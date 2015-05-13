@@ -1,3 +1,5 @@
+#Script to parse json file 'students.json' and sort by grade
+#@author Alan Fluder
 import json
 
 class Student:
@@ -16,11 +18,13 @@ class Student:
     def __repr__(self):
         return repr((self.first_name, self.last_name, self.grade))    
 
-with open ("students.json", "r") as jsonFile:
-    rawStudentData = jsonFile.read()
-        
+def open_file(filename):
+    with open (filename, "r") as jsonFile:
+        return jsonFile.read()
+    
+rawStudentData = open_file('students.json')
+rawStudentData = rawStudentData.split("}")        
 studentList = []
-rawStudentData = rawStudentData.split("}")
 
 for line in rawStudentData:
     entryByLine = line.split()
